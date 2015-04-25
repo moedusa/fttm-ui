@@ -1,0 +1,66 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Factotum
+    link(href='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css', rel='stylesheet')
+    link(href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', rel='stylesheet')
+    link(href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&subset=latin,cyrillic', rel='stylesheet', type='text/css')
+    link(href='/css/factotum.css', rel='stylesheet')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js', type='text/javascript')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.7.0/lodash.min.js', type='text/javascript')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js', type='text/javascript')
+    script(src='/javascripts/autosize.js', type='text/javascript')
+    script(src='/javascripts/factotum.js', type='text/javascript')
+  body
+    .container
+      nav.navbar.navbar-main
+        .container-fluid
+          .navbar-header
+            img(src='/images/ohhai.svg', height='50', alt='Factotum')
+      .row
+        // facts form
+        .col-md-6
+          form#fact-add(autocomplete='off')
+            .fact-wrap
+              .form-group
+                .fact-textarea-wrap
+                  textarea#text(name='text', placeholder='Вставьте факт прямо вот сюда', required='', autofocus='')
+              #markup-cmd.input-group.form-group
+                input#subject.form-control(type='text', name='subject', placeholder='Субъект', required='')
+                span.input-group-btn
+                  button.btn.btn-default(data-action='subject', type='button')
+                    i.fa.fa-user
+              .input-group.form-group
+                input#predicate.form-control(type='text', name='predicate', placeholder='Предикат', required='')
+                span.input-group-btn
+                  button.btn.btn-default(data-action='predicate', type='button')
+                    i.fa.fa-arrows-h
+              .input-group
+                input#object.form-control(type='text', name='object', placeholder='Объект', required='')
+                span.input-group-btn
+                  button.btn.btn-default(data-action='object', type='button')
+                    i.fa.fa-beer
+            .fact-meta-wrap
+              .row
+                .col-md-8
+                  .form-group
+                    input.form-control(type='text', name='source', placeholder='Источник')
+                .col-md-4
+                  .form-group.pull-right
+                    input.btn.btn-default(type='reset', value='Очистить')
+                    input.btn.btn-primary(type='submit', value='Сохранить')
+        // facts list
+        .col-md-6
+          section#facts
+          script#facts-template(type='text/html').
+            <h1>Факты (<%= facts.length%>):</h1>
+            <% _.each(facts, function(fact) {%>
+              <article class="fact" data-id="<%= fact.id%>">
+                <header>
+                  <h3 class="text"><%= fact.text %></h3>
+                </header>
+              </article>
+            <% }) %>
