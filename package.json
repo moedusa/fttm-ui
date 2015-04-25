@@ -1,0 +1,14 @@
+{
+  "name": "fttm-ui",
+  "version": "0.0.1",
+  "description": "Testing js build systems",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moedusa/fttm-ui.git"
+  },
+  "author": "möe",
+  "homepage": "https://github.com/moedusa/fttm-ui#readme",
+  "devDependencies": {
+    "gulp": "^3.8.11"
+  }
+}
